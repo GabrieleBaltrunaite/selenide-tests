@@ -34,7 +34,7 @@ dependencies {
     testRuntimeOnly 'org.aspectj:aspectjweaver:1.9.22.1'
     agent 'org.aspectj:aspectjweaver:1.9.22.1'
 
-    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.17'
 }
 
 test {
