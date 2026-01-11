@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     // 2.11.2 is the stable choice for Gradle 8.5 + Java 17
-    id 'io.qameta.allure' version '2.11.2'
+    id 'io.qameta.allure' version '3.0.1'
 }
 
 group 'com.imdb'
