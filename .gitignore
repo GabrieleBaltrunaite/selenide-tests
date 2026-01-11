@@ -1,0 +1,7 @@
+.gradle/
+build/
+allure-results/
+out/
+.idea/
+*.class
+*.log

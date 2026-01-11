@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    // 2.11.2 is the stable choice for Gradle 8.5 + Java 17
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group 'com.imdb'
+version '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        // Explicitly forcing Java 17
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    agent
+}
+
+dependencies {
+    testImplementation 'com.codeborne:selenide:7.4.0'
+    testImplementation 'org.testng:testng:7.10.2'
+
+    // Allure Dependencies
+    testImplementation 'io.qameta.allure:allure-selenide:2.27.0'
+    testImplementation 'io.qameta.allure:allure-testng:2.27.0'
+
+    // Required for Allure @Step annotations in Java 17
+    testRuntimeOnly 'org.aspectj:aspectjweaver:1.9.22.1'
+    agent 'org.aspectj:aspectjweaver:1.9.22.1'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+}
+
+test {
+    useTestNG()
+    systemProperties(System.getProperties())
+    systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "warn"
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStackTraces true
+    }
+    jvmArgs = [
+            "-javaagent:${configurations.agent.singleFile.absolutePath}"
+    ]
+    ignoreFailures = true
+}
+
+allure {
+    version = '2.27.0'
+    adapter {
+        frameworks {
+            testng {
+                enabled = true
+            }
+        }
+    }
+}
+// For CI/CD (Docker/Jenkins):
+// test.finalizedBy allureReport
+
+// For Local Development (Auto-open browser):
+// test.finalizedBy allureServe
+
