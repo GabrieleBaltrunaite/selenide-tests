@@ -26,8 +26,6 @@ public class TitlePage {
 
         actorLink.should(exist, Duration.ofSeconds(10));
         actorLink.scrollIntoView("{block: \"center\", inline: \"center\"}");
-        // .click(ClickOptions.usingJavaScript()) is the most robust way to
-        // support small browsers/responsive design.
         String actorName = actorLink.text();
         actorLink.click(ClickOptions.usingJavaScript());
 

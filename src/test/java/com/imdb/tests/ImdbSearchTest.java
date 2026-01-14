@@ -6,7 +6,7 @@ import com.imdb.pages.TitlePage;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
-public class ImdbSearchTest {
+public class ImdbSearchTest extends BaseTest {
     HomePage homePage = new HomePage();
     TitlePage titlePage = new TitlePage();
     ActorPage actorPage = new ActorPage();

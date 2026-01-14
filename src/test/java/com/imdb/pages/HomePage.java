@@ -17,7 +17,6 @@ public class HomePage {
 
     public void openImdb() {
         open("https://www.imdb.com");
-//        if (acceptCookiesBtn.shouldBe(exist, Duration.ofSeconds(5)).isDisplayed()) {
         if (acceptCookiesBtn.is(visible)){
             acceptCookiesBtn.click();
         }
@@ -36,7 +35,7 @@ public class HomePage {
         SelenideElement firstResult = suggestions.first().shouldBe(visible);
         String capturedTitle = firstResult.$(".searchResult__constTitle").text();
 
-        firstResult.parent().click();
+        firstResult.shouldBe(visible).click();
         return capturedTitle;
     }
 }
